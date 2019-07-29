@@ -4,8 +4,6 @@ import useDropdown from "./useDropdown";
 import Results from "./Results";
 
 const SearchParams = () => {
-  console.log(this);
-
   const [location, setLocation] = useState("Seattle, WA");
   const [breeds, setBreeds] = useState([]);
   const [animal, AnimalDropdown] = useDropdown("Animal", "dog", ANIMALS);
@@ -19,15 +17,12 @@ const SearchParams = () => {
       type: animal
     });
 
-    console.log(animals);
-
     setPets(animals || []);
   }
 
   useEffect(() => {
     setBreeds([]);
     setBreed("");
-    console.log(pet);
     pet.breeds(animal).then(({ breeds: apiBreeds }) => {
       const breedStrings = apiBreeds.map(({ name }) => name);
       setBreeds(breedStrings);
